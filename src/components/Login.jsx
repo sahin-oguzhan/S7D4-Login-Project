@@ -9,7 +9,7 @@ const initialData = {
     terms: false,
 }
 
-const errorMessages = {
+export const errorMessages = {
     email: "Lütfen geçerli bir mail adresi giriniz",
     password: "Şifre en az 1 büyük harf, 1 küçük harf, 1 özel karakter, 1 rakam içermeli ve 8 karakterden uzun olmalı",
 }
@@ -96,8 +96,9 @@ useEffect(() => {
       value={formData.email}
       onChange={handleChange}
       invalid={errors.email}
+      data-cy="form-email"
     />
-    {errors.email && (<FormFeedback>
+    {errors.email && (<FormFeedback data-cy="form-error-message">
       {errorMessages.email}
     </FormFeedback>)}
   </FormGroup>
@@ -113,19 +114,20 @@ useEffect(() => {
       value={formData.password}
       onChange={handleChange}
       invalid={errors.password}
+      data-cy="form-password"
     />
-    {errors.password && (<FormFeedback>
+    {errors.password && (<FormFeedback data-cy="form-error-message">
       {errorMessages.password}
     </FormFeedback>)}
   </FormGroup>
   <FormGroup check>
-    <Input type="checkbox" name="terms" id="terms" onChange={handleChange} invalid={errors.terms}/>
+    <Input type="checkbox" name="terms" id="terms" onChange={handleChange} invalid={errors.terms} data-cy="form-terms"/>
     <Label for="terms" check>
       Şartları kabul ediyorum.
     </Label>
   </FormGroup>
   <FormGroup className="text-center">
-  <Button disabled={!isValid} className="button">
+  <Button disabled={!isValid} className="button" data-cy="form-button">
     Kayıt Ol
   </Button>
   </FormGroup>
