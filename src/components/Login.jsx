@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { Button, Form, FormFeedback, FormGroup, Input, Label } from "reactstrap";
+
 
 const initialData = {
     email: "",
@@ -21,6 +23,9 @@ const [errors, setErrors] = useState({
     password: false,
     terms: false,
 });
+
+const history = useHistory();
+
 const validateEmail = (email) => {
     return String(email)
       .toLowerCase()
@@ -63,9 +68,10 @@ function handleChange(event) {
 
 function handleSubmit(event) {
     event.preventDefault();
+    if (isValid) {
+     history.push("/success");
+    }
     setFormData(initialData);
-    console.log(formData);
-    if(!isValid) return;
 }
 
 useEffect(() => {
